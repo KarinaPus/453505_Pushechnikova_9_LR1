@@ -1,23 +1,26 @@
 """Application entry logic."""
 
-from modules.input_utils import request_eps_value, request_repeat_choice, request_x_value
-from modules.series_math import calculate_arccos_series
-from modules.ui import print_header, print_result
+from modules.input_utils import request_main_menu_choice, request_repeat_choice
+from modules.tasks.task1 import run_task_1
+from modules.tasks.task2 import run_task_2
+from modules.ui import print_main_header, print_task_menu
 
 
 def run_application() -> None:
     """Run the interactive laboratory work application."""
-    print_header()
+    print_main_header()
 
     while True:
-        x_value = request_x_value()
-        eps_value = request_eps_value()
+        print_task_menu()
+        task_choice = request_main_menu_choice()
 
-        try:
-            result, elapsed_time = calculate_arccos_series(x_value, eps_value)
-            print_result(result, elapsed_time)
-        except ArithmeticError as error:
-            print(f"Calculation error: {error}")
+        if task_choice == "1":
+            run_task_1()
+        elif task_choice == "2":
+            run_task_2()
+        else:
+            print("The program has been finished.")
+            break
 
         if not request_repeat_choice():
             print("The program has been finished.")

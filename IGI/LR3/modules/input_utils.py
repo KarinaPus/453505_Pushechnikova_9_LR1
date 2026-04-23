@@ -34,11 +34,20 @@ def request_eps_value() -> float:
 
 
 def request_repeat_choice() -> bool:
-    """Ask whether the user wants to repeat the calculation."""
+    """Ask whether the user wants to continue working with the program."""
     while True:
-        answer = input("Do you want to perform another calculation? (y/n): ").strip().lower()
+        answer = input("Do you want to continue working? (y/n): ").strip().lower()
         if answer in {"y", "yes", "д", "да"}:
             return True
         if answer in {"n", "no", "н", "нет"}:
             return False
         print("Input error: enter 'y' or 'n'.")
+
+
+def request_main_menu_choice() -> str:
+    """Request the task number from the main menu."""
+    while True:
+        choice = input("Choose a task (1, 2, 0): ").strip()
+        if choice in {"1", "2", "0"}:
+            return choice
+        print("Input error: enter 1, 2 or 0.")
