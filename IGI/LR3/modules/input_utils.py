@@ -1,14 +1,37 @@
 """Helpers for interactive input."""
 
-from modules.validators import parse_float, validate_eps_value, validate_x_value
+from modules.validators import (
+    parse_float,
+    parse_int,
+    validate_eps_value,
+    validate_x_value,
+)
+
+
+def read_user_input(prompt_text: str) -> str:
+    """Read user input and finish gracefully on end-of-file."""
+    try:
+        return input(prompt_text)
+    except EOFError as exc:
+        raise SystemExit("Input stream ended. The program has been finished.") from exc
 
 
 def request_float(prompt_text: str, field_name: str) -> float:
     """Request a floating-point number until it is entered correctly."""
     while True:
-        raw_value = input(prompt_text)
+        raw_value = read_user_input(prompt_text)
         try:
             return parse_float(raw_value, field_name)
+        except ValueError as error:
+            print(f"Input error: {error}")
+
+
+def request_int(prompt_text: str, field_name: str) -> int:
+    """Request an integer number until it is entered correctly."""
+    while True:
+        raw_value = read_user_input(prompt_text)
+        try:
+            return parse_int(raw_value, field_name)
         except ValueError as error:
             print(f"Input error: {error}")
 
@@ -36,7 +59,7 @@ def request_eps_value() -> float:
 def request_repeat_choice() -> bool:
     """Ask whether the user wants to continue working with the program."""
     while True:
-        answer = input("Do you want to continue working? (y/n): ").strip().lower()
+        answer = read_user_input("Do you want to continue working? (y/n): ").strip().lower()
         if answer in {"y", "yes", "д", "да"}:
             return True
         if answer in {"n", "no", "н", "нет"}:
@@ -47,7 +70,7 @@ def request_repeat_choice() -> bool:
 def request_main_menu_choice() -> str:
     """Request the task number from the main menu."""
     while True:
-        choice = input("Choose a task (1, 2, 0): ").strip()
+        choice = read_user_input("Choose a task (1, 2, 0): ").strip()
         if choice in {"1", "2", "0"}:
             return choice
         print("Input error: enter 1, 2 or 0.")

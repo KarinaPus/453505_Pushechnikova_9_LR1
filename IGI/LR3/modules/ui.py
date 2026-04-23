@@ -27,6 +27,14 @@ def print_task_1_header() -> None:
     print("-" * 72)
 
 
+def print_task_2_header() -> None:
+    """Show the heading for task 2."""
+    print("\nTask 2. Variant 9")
+    print("Goal: calculate the arithmetic mean of even integers")
+    print("Input ends when you enter 0")
+    print("-" * 72)
+
+
 def print_result(result: dict, elapsed_time: float) -> None:
     """Display the calculation result in a user-friendly form."""
     print("\nCalculation result")
@@ -40,10 +48,13 @@ def print_result(result: dict, elapsed_time: float) -> None:
     print("-" * 72)
 
 
-def print_task_2_stub() -> None:
-    """Show a stub message for task 2."""
-    print("\nTask 2. Variant 9")
+def print_task_2_result(result: dict, elapsed_time: float) -> None:
+    """Display the result for task 2."""
+    print("\nCalculation result")
     print("-" * 72)
-    print("This task has not been implemented yet.")
-    print("The menu is already prepared, so task 2 can be added next.")
+    print(f"Entered numbers     = {result['numbers_count']}")
+    print(f"Even numbers count  = {result['even_numbers_count']}")
+    print(f"Even numbers        = {result['even_numbers']}")
+    print(f"Average value       = {result['average_value']:.10f}")
+    print(f"Elapsed time        = {elapsed_time:.6f} s")
     print("-" * 72)

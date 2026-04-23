@@ -9,6 +9,14 @@ def parse_float(user_input: str, field_name: str) -> float:
         raise ValueError(f"{field_name} must be a real number.") from exc
 
 
+def parse_int(user_input: str, field_name: str) -> int:
+    """Convert user input to int with a clear error message."""
+    try:
+        return int(user_input.strip())
+    except ValueError as exc:
+        raise ValueError(f"{field_name} must be an integer.") from exc
+
+
 def validate_x_value(x_value: float) -> float:
     """Validate the argument range for arccos(x)."""
     if not -1.0 <= x_value <= 1.0:
