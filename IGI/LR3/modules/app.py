@@ -3,6 +3,7 @@
 from modules.input_utils import request_main_menu_choice, request_repeat_choice
 from modules.tasks.task1 import run_task_1
 from modules.tasks.task2 import run_task_2
+from modules.tasks.task3 import run_task_3
 from modules.ui import print_main_header, print_task_menu
 
 
@@ -18,6 +19,8 @@ def run_application() -> None:
             run_task_1()
         elif task_choice == "2":
             run_task_2()
+        elif task_choice == "3":
+            run_task_3()
         else:
             print("The program has been finished.")
             break

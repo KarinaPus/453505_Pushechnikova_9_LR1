@@ -70,7 +70,12 @@ def request_repeat_choice() -> bool:
 def request_main_menu_choice() -> str:
     """Request the task number from the main menu."""
     while True:
-        choice = read_user_input("Choose a task (1, 2, 0): ").strip()
-        if choice in {"1", "2", "0"}:
+        choice = read_user_input("Choose a task (1, 2, 3, 0): ").strip()
+        if choice in {"1", "2", "3", "0"}:
             return choice
-        print("Input error: enter 1, 2 or 0.")
+        print("Input error: enter 1, 2, 3 or 0.")
+
+
+def request_text(prompt_text: str) -> str:
+    """Request a text value from the user."""
+    return read_user_input(prompt_text)

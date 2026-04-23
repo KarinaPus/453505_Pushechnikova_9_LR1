@@ -15,6 +15,7 @@ def print_task_menu() -> None:
     print("-" * 72)
     print("1 - Task 1: arccos(x) using a power series")
     print("2 - Task 2: sequence processing")
+    print("3 - Task 3: count spaces and punctuation marks")
     print("0 - Exit")
     print("-" * 72)
 
@@ -32,6 +33,14 @@ def print_task_2_header() -> None:
     print("\nTask 2. Variant 9")
     print("Goal: calculate the arithmetic mean of even integers")
     print("Input ends when you enter 0")
+    print("-" * 72)
+
+
+def print_task_3_header() -> None:
+    """Show the heading for task 3."""
+    print("\nTask 3. Variant 9")
+    print("Goal: count spaces and punctuation marks in the entered text")
+    print("Regular expressions are not used")
     print("-" * 72)
 
 
@@ -56,5 +65,16 @@ def print_task_2_result(result: dict, elapsed_time: float) -> None:
     print(f"Even numbers count  = {result['even_numbers_count']}")
     print(f"Even numbers        = {result['even_numbers']}")
     print(f"Average value       = {result['average_value']:.10f}")
+    print(f"Elapsed time        = {elapsed_time:.6f} s")
+    print("-" * 72)
+
+
+def print_task_3_result(result: dict, elapsed_time: float) -> None:
+    """Display the result for task 3."""
+    print("\nCalculation result")
+    print("-" * 72)
+    print(f"Entered text length = {result['text_length']}")
+    print(f"Spaces count        = {result['spaces_count']}")
+    print(f"Punctuation count   = {result['punctuation_count']}")
     print(f"Elapsed time        = {elapsed_time:.6f} s")
     print("-" * 72)
