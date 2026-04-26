@@ -16,6 +16,8 @@ def print_task_menu() -> None:
     print("1 - Task 1: arccos(x) using a power series")
     print("2 - Task 2: sequence processing")
     print("3 - Task 3: count spaces and punctuation marks")
+    print("4 - Task 4: analyze the reference text")
+    print("5 - Task 5: process a real-valued list")
     print("0 - Exit")
     print("-" * 72)
 
@@ -41,6 +43,22 @@ def print_task_3_header() -> None:
     print("\nTask 3. Variant 9")
     print("Goal: count spaces and punctuation marks in the entered text")
     print("Regular expressions are not used")
+    print("-" * 72)
+
+
+def print_task_4_header() -> None:
+    """Show the heading for task 4."""
+    print("\nTask 4. Variant 9")
+    print("Goal: analyze the predefined text without regular expressions")
+    print("Checks vowels, character frequencies, and comma followers")
+    print("-" * 72)
+
+
+def print_task_5_header() -> None:
+    """Show the heading for task 5."""
+    print("\nTask 5. Variant 9")
+    print("Goal: process a real-valued list with two initialization modes")
+    print("Find the product of negative elements and a partial positive sum")
     print("-" * 72)
 
 
@@ -77,4 +95,52 @@ def print_task_3_result(result: dict, elapsed_time: float) -> None:
     print(f"Spaces count        = {result['spaces_count']}")
     print(f"Punctuation count   = {result['punctuation_count']}")
     print(f"Elapsed time        = {elapsed_time:.6f} s")
+    print("-" * 72)
+
+
+def format_character_counts(character_counts: dict[str, int]) -> str:
+    """Prepare a readable string for character frequency output."""
+    formatted_items = []
+
+    for symbol, count in character_counts.items():
+        label = "<space>" if symbol == " " else symbol
+        formatted_items.append(f"{label}: {count}")
+
+    return ", ".join(formatted_items)
+
+
+def print_task_4_result(result: dict, elapsed_time: float) -> None:
+    """Display the result for task 4."""
+    print("\nReference text")
+    print("-" * 72)
+    print(result["text"])
+    print("-" * 72)
+    print("Calculation result")
+    print("-" * 72)
+    print(f"Words count                     = {len(result['words'])}")
+    print(f"Words starting or ending vowel  = {result['vowel_edge_words_count']}")
+    print(
+        "Character frequencies          = "
+        f"{format_character_counts(result['character_counts'])}"
+    )
+    print(f"Words after commas             = {result['words_after_commas']}")
+    print(f"Elapsed time                   = {elapsed_time:.6f} s")
+    print("-" * 72)
+
+
+def print_task_5_result(result: dict, elapsed_time: float) -> None:
+    """Display the result for task 5."""
+    print("\nCalculation result")
+    print("-" * 72)
+    print(f"Generated list                 = {result['numbers']}")
+    print(f"Maximum element                = {result['max_value']:.10f}")
+    print(f"Index of maximum element       = {result['max_index']}")
+    print(f"Negative elements              = {result['negative_elements']}")
+    print(f"Product of negative elements   = {result['negative_product']:.10f}")
+    print(f"Positive elements before max   = {result['positive_before_max']}")
+    print(
+        "Sum before maximum element     = "
+        f"{result['positive_sum_before_max']:.10f}"
+    )
+    print(f"Elapsed time                   = {elapsed_time:.6f} s")
     print("-" * 72)

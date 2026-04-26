@@ -29,3 +29,17 @@ def validate_eps_value(eps_value: float) -> float:
     if eps_value <= 0:
         raise ValueError("eps must be greater than 0.")
     return eps_value
+
+
+def validate_positive_int(int_value: int, field_name: str) -> int:
+    """Validate that a number is a positive integer."""
+    if int_value <= 0:
+        raise ValueError(f"{field_name} must be greater than 0.")
+    return int_value
+
+
+def validate_range_bounds(left_border: float, right_border: float) -> tuple[float, float]:
+    """Validate a floating-point interval for random generation."""
+    if left_border > right_border:
+        raise ValueError("the left border must not exceed the right border.")
+    return left_border, right_border

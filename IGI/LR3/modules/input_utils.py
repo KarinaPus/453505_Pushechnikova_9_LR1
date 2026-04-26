@@ -4,6 +4,8 @@ from modules.validators import (
     parse_float,
     parse_int,
     validate_eps_value,
+    validate_positive_int,
+    validate_range_bounds,
     validate_x_value,
 )
 
@@ -70,12 +72,47 @@ def request_repeat_choice() -> bool:
 def request_main_menu_choice() -> str:
     """Request the task number from the main menu."""
     while True:
-        choice = read_user_input("Choose a task (1, 2, 3, 0): ").strip()
-        if choice in {"1", "2", "3", "0"}:
+        choice = read_user_input("Choose a task (1, 2, 3, 4, 5, 0): ").strip()
+        if choice in {"1", "2", "3", "4", "5", "0"}:
             return choice
-        print("Input error: enter 1, 2, 3 or 0.")
+        print("Input error: enter 1, 2, 3, 4, 5 or 0.")
 
 
 def request_text(prompt_text: str) -> str:
     """Request a text value from the user."""
     return read_user_input(prompt_text)
+
+
+def request_positive_int(prompt_text: str, field_name: str) -> int:
+    """Request a positive integer number."""
+    while True:
+        int_value = request_int(prompt_text, field_name)
+        try:
+            return validate_positive_int(int_value, field_name)
+        except ValueError as error:
+            print(f"Input error: {error}")
+
+
+def request_list_initialization_choice() -> str:
+    """Request the list initialization mode for task 5."""
+    while True:
+        choice = read_user_input(
+            "Choose list initialization (1 - user input, 2 - generator): "
+        ).strip()
+        if choice in {"1", "2"}:
+            return choice
+        print("Input error: enter 1 or 2.")
+
+
+def request_generation_bounds() -> tuple[float, float]:
+    """Request valid bounds for random list generation."""
+    while True:
+        left_border = request_float("Enter the left border of the range: ", "left border")
+        right_border = request_float(
+            "Enter the right border of the range: ",
+            "right border",
+        )
+        try:
+            return validate_range_bounds(left_border, right_border)
+        except ValueError as error:
+            print(f"Input error: {error}")
